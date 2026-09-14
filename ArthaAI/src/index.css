@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --color-paper: #ffffff;
+  --color-ink: #12233a;
+  --color-navy: #15325b;
+  --color-ice: #e8f2ff;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    @apply antialiased text-slate-900 dark:text-slate-100;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    background: #ffffff;
+  }
+
+  .dark body {
+    background: #0b1220;
+  }
+
+  h1,
+  h2,
+  .font-display {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/35 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+  }
+
+  .dark button,
+  .dark a,
+  .dark input,
+  .dark select,
+  .dark textarea {
+    @apply focus-visible:ring-offset-[#0b1220];
+  }
+}
+
+@layer components {
+  .tricolor-bar {
+    display: flex;
+    height: 3px;
+    width: 100%;
+  }
+
+  .tricolor-bar span:nth-child(1) {
+    flex: 1;
+    background: #ff9933;
+  }
+
+  .tricolor-bar span:nth-child(2) {
+    flex: 1;
+    background: #ffffff;
+  }
+
+  .tricolor-bar span:nth-child(3) {
+    flex: 1;
+    background: #138808;
+  }
+
+  .dark .tricolor-bar span:nth-child(2) {
+    background: #cbd5e1;
+  }
+
+  .page-canvas {
+    background-color: #ffffff;
+    background-image: none;
+  }
+
+  .dark .page-canvas {
+    background-color: #0b1220;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37, 99, 235, 0.14), transparent 55%),
+      radial-gradient(ellipse 40% 30% at 100% 0%, rgba(196, 92, 38, 0.08), transparent 45%);
+  }
+
+  .msme-card {
+    @apply rounded-2xl border border-sky-200/80 bg-[#e8f2ff] shadow-none dark:border-slate-700 dark:bg-slate-900/80;
+  }
+
+  .msme-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-[#1d4ed8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1e40af] active:scale-[0.99];
+  }
+
+  .msme-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-sky-200 bg-[#e8f2ff] px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-[#d9ebff] dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400;
+  }
+
+  .site-header {
+    @apply sticky top-0 z-40 border-b border-sky-100 bg-white/90 backdrop-blur-xl dark:border-slate-800/80 dark:bg-[#0b1220]/80;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.45);
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.55);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.65);
+}
