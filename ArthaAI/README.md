@@ -112,6 +112,21 @@ npm run build
 npm start       # production: node dist/server.cjs
 ```
 
+## Deploy
+
+The repository includes a production `Dockerfile` and a `render.yaml` blueprint.
+
+For any Docker host:
+
+```bash
+docker build -t artha-ai .
+docker run --env-file .env -p 3000:3000 artha-ai
+```
+
+The container listens on `0.0.0.0:$PORT` and exposes `GET /api/health` for health checks. Set `GEMINI_API_KEY` as a server-side environment variable in the hosting provider; never commit `.env`.
+
+On Render, create a new Blueprint from this repository and provide `GEMINI_API_KEY` when prompted. The service uses the included health check and automatically receives Render's `PORT` value.
+
 ## Project layout
 
 ```
