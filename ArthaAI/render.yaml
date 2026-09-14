@@ -2,6 +2,7 @@ services:
   - type: web
     name: artha-ai
     runtime: docker
+    rootDir: ArthaAI
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /api/health
